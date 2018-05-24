@@ -10,7 +10,7 @@ A docker compose workflow for local & team wordpress development
 6. if using port 80 for docker container, make sure apache isnt running
 
 Create the docker-compose.yaml in a new folder:
-
+```
 version: '3.3'
 
 services:
@@ -40,7 +40,8 @@ services:
      volumes:
        - ./:/var/www/html
 volumes:
-    db_data:
+    db_data:`
+```
 
 Running docker-compose down will reload the database
 
@@ -52,10 +53,8 @@ An antipattern is to update application files from within the container, i.e usi
 8b. An alternative is to not use the official wordpress image but to generte a LAP stack
 using a Dockerfile to enable php apache with mysql enabled. See docker-compose.yaml:
 
-FROM php:7.2.2-apache
-RUN docker-php-ext-install mysqli
-
 docker-compose.yaml
+```
 version: '3'
 
 services:
@@ -85,15 +84,19 @@ services:
      tty: true
 volumes:
     db_data:
+```
 
 Dockerfile:
-
+```
 FROM php:7.2.2-apache
 RUN docker-php-ext-install mysqli% 
-
+```
 7. To export your database use: 
+```
 docker exec local_db_1 /usr/bin/mysqldump -u wordpress --password=wordpress wordpress > backup.sql
 (Must target container running mysql, not apache server!)
-
+```
 8. To restore a database:
+```
 cat backup.sql | docker exec -i local_db_1 /usr/bin/mysql -u wordpress --password=wordpress wordpress
+```
