@@ -1,4 +1,4 @@
-# starter-wp-docker
+# Docker + Wordpress
 A docker compose workflow for local & team wordpress development
 
 1. Dependencies: docker, docker-compose
