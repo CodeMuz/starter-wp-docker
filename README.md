@@ -43,7 +43,7 @@ volumes:
 
 *N.B Running docker-compose down will reload the database
 
-7. Unfortunately the wordpress docker images are not always up to date. Without hard setting the wp version in docker-compose.yaml or version controlling the core files, one can rebuild containers everytime an update is released. However this instead can be handled by versioning wp in git and seeding the container using an up to date init.sql. (See 6)
+7. Unfortunately the wordpress docker images are not always up to date. Without hard setting the wp version in docker-compose.yaml or version controlling the core files, one can rebuild containers everytime an update is released. However this instead can be handled by versioning wp in git and seeding the container using an up to date init.sql. (See 8)
 
 An antipattern is to update application files from within the container, i.e using the admin panel update links. 
   Instead one can use the CLI such as: $wp core updates you may need to add the absolute url of your databse path: i.e to 127.0.0.1:3306 as the CLI doesn't instantiate docker environment variables and will report 'Error establishing a database connection'
